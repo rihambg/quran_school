@@ -5,8 +5,10 @@ import 'system/utils/theme.dart';
 import 'controllers/theme.dart';
 import 'routes/app_screens.dart';
 import 'bindings/theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(); // Load .env file
   Get.put(ThemeController());
   runApp(MyApp());
 }
