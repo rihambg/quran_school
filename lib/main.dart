@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:flutter/material.dart';
 import 'testpage.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,8 @@ import 'bindings/theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
-  await dotenv.load(); // Load .env file
+  await dotenv.load(fileName: ".env"); // Load .env file
+  dev.log('Environment variables loaded: ${dotenv.env}');
   Get.put(ThemeController());
   runApp(MyApp());
 }

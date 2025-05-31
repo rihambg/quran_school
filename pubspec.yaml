@@ -59,6 +59,7 @@ dependencies:
   flutter_spinkit: ^5.2.1
   # to use .env files
   flutter_dotenv: ^5.1.0
+  dotenv: ^4.2.0
 
 
 
@@ -84,6 +85,7 @@ flutter:
     - assets/footer/
     - assets/illustration/
     - assets/page.png
+    - .env
 
 
 
