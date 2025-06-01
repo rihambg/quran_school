@@ -40,15 +40,6 @@ class AttendanceController extends GetxController {
 
   void _loadStudents() {
     //TODO
-    final List<Student> dummyStudents = [
-      Student(id: 'S001', name: 'أسامة الغناني'),
-      Student(id: 'S002', name: 'جمال صحراوي'),
-      Student(id: 'S003', name: 'سيف الدين فيصلي'),
-      Student(id: 'S004', name: 'عاصم بدري'),
-      Student(id: 'S005', name: 'عبد الهادي تبغيت'),
-      Student(id: 'S006', name: 'محمد سهير'),
-      Student(id: 'S007', name: 'هارون العناني'),
-    ];
   }
 
   @override

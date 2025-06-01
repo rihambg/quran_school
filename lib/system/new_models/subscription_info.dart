@@ -1,9 +1,10 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class SubscriptionInfo implements Model {
-  dynamic subscriptionId;
-  dynamic studentId;
-  dynamic enrollmentDate;
-  dynamic exitDate;
-  dynamic exitReason;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class SubscriptionInfo implements Model {
+ dynamic subscriptionId;
+ dynamic studentId;
+ dynamic enrollmentDate;
+ dynamic exitDate;
+ dynamic exitReason;
 
   SubscriptionInfo({
     this.subscriptionId,

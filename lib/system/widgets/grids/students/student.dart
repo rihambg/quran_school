@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/models/get/student_class.dart';
 import '../../../models/grid/generic_data_grid.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import '../../../models/get/student_class.dart'; // Your student model
 
 class StudentGrid extends StatelessWidget {
   final List<Student> data;

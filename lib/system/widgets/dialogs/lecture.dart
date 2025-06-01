@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/teacher.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/network/api_endpoints.dart';
 import '../../utils/const/lecture.dart';
 import '../drop_down.dart';
 import '../../../controllers/submit_form.dart';
 import '../../models/post/lecture.dart';
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/connect.dart';
+
 import '../../../controllers/validator.dart';
 import '../../../controllers/edit_lecture.dart';
 import '../custom_container.dart';
@@ -29,7 +30,8 @@ class LectureDialog extends StatefulWidget {
 class _LectureDialogState extends State<LectureDialog> {
   Future<void> loadData() async {
     try {
-      final fetchedTeachernNames = await getItems(ApiEndpoints.getTeachers);
+      final fetchedTeachernNames =
+          await getItems<Teacher>(ApiEndpoints.getTeachers, Teacher.fromJson);
 
       dev.log('teacherNames: ${fetchedTeachernNames.toString()}');
 
@@ -45,7 +47,6 @@ class _LectureDialogState extends State<LectureDialog> {
   final GlobalKey<FormState> lectureFormKey = GlobalKey<FormState>();
   late ScrollController scrollController;
   late form.FormController formController;
-  final Connect connect = Connect();
   final lectureInfo = Lecture();
   MultiSelectResult? teacherResult;
   EditLecture? editLecture;
@@ -298,8 +299,11 @@ class _LectureDialogState extends State<LectureDialog> {
 
                       try {
                         // Depending on whether it's an edit or a new submission, call the appropriate endpoint
-                        final bool success = await submitForm(lectureFormKey,
-                            connect, lectureInfo, ApiEndpoints.getLectures);
+                        final bool success = await submitForm<Lecture>(
+                            lectureFormKey,
+                            lectureInfo,
+                            ApiEndpoints.getLectures,
+                            (Lecture.fromJson));
 
                         // Handle result based on success
                         if (success) {

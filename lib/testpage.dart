@@ -49,6 +49,18 @@ class TestPage extends StatelessWidget {
           },
           child: Text('attendance management'),
         ),
+        TextButton(
+          onPressed: () {
+            Get.toNamed(Routes.examPage);
+          },
+          child: Text('exam management'),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.toNamed(Routes.financialManagement);
+          },
+          child: Text('financial management'),
+        ),
       ]),
     );
   }

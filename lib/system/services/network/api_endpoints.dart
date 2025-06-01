@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiEndpoints {
-  static final String baseUrl = dotenv.env['API_URL'] ??
+  static final String baseUrl = dotenv.env['DB_REST_API_URL'] ??
       'http://192.168.100.50/quran/ahl_quran_backend/api/v1';
 
   // AccountInfo endpoints
@@ -78,7 +78,7 @@ class ApiEndpoints {
   static String getRequestCopyById(int id) => '$baseUrl/requestcopys/$id';
 
   // Student endpoints
-  static final String getStudents = '$baseUrl/students';
+  static final String getStudents = '$baseUrl/special/students';
   static String getStudentById(int id) => '$baseUrl/students/$id';
 
   // SubscriptionInfo endpoints

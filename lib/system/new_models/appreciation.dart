@@ -1,8 +1,9 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class Appreciation implements Model {
-  dynamic appreciationId;
-  dynamic pointMin;
-  dynamic pointMax;
-  dynamic note;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class Appreciation implements Model {
+ dynamic appreciationId;
+ dynamic pointMin;
+ dynamic pointMax;
+ dynamic note;
 
   Appreciation({
     this.appreciationId,

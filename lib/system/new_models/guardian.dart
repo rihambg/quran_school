@@ -1,14 +1,15 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class Guardian implements Model {
-  dynamic guardianId;
-  dynamic firstName;
-  dynamic lastName;
-  dynamic dateOfBirth;
-  dynamic relationship;
-  dynamic guardianContactId;
-  dynamic guardianAccountId;
-  dynamic homeAddress;
-  dynamic job;
-  dynamic profileImage;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class Guardian implements Model {
+ dynamic guardianId;
+ dynamic firstName;
+ dynamic lastName;
+ dynamic dateOfBirth;
+ dynamic relationship;
+ dynamic guardianContactId;
+ dynamic guardianAccountId;
+ dynamic homeAddress;
+ dynamic job;
+ dynamic profileImage;
 
   Guardian({
     this.guardianId,

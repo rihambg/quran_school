@@ -1,4 +1,6 @@
-class Lecture {
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+
+class Lecture implements Model {
   final String id;
   final String lectureNameAr;
   final String lectureNameEn;
@@ -29,5 +31,16 @@ class Lecture {
           : [],
       studentCount: int.tryParse(map['student_count'].toString()) ?? 0,
     );
+  }
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'lecture_id': id,
+      'lecture_name_ar': lectureNameAr,
+      'lecture_name_en': lectureNameEn,
+      'circle_type': circleType,
+      'teacher_ids': teacherIds.join(','),
+      'student_count': studentCount,
+    };
   }
 }

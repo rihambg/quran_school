@@ -1,4 +1,6 @@
-class Guardian {
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+
+class Guardian implements Model {
   final String id;
   final String lastName;
   final String firstName;
@@ -8,6 +10,21 @@ class Guardian {
   final String email;
   String? guardianAccount;
   List<String>? children;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'guardian_id': id,
+      'last_name': lastName,
+      'first_name': firstName,
+      'date_of_birth': dateOfBirth,
+      'relationship': relationship,
+      'phone_number': phoneNumber,
+      'email': email,
+      'guardian_account': guardianAccount,
+      'children': children?.join(',') ?? '',
+    };
+  }
 
   Guardian({
     required this.id,

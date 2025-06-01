@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/screens/exam_management.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/screens/exams/exam_types.dart';
 import '../system/screens/copy.dart';
 import '../bindings/copy.dart';
 import '../system/screens/add_student.dart';
@@ -24,6 +26,14 @@ class Routes {
   static const addLecture = '/add_lecture';
   static const addAcheivement = '/add_acheivement';
   static const Attendance = '/Attendance';
+
+  static const examPage = '/exams';
+  static const examRrcords = '/exams/records';
+  static const examResultsNotes = '/exams/notes';
+  static const examTypes = '/exams/types';
+  static const examTeachers = '/exams/teachers';
+
+  static const String financialManagement = '/financial_management';
 }
 
 class AppScreens {
@@ -72,6 +82,19 @@ class AppScreens {
       name: Routes.Attendance,
       page: () => AttendanceScreen(),
       binding: AttendanceBinding(),
+    ),
+    GetPage(
+      name: Routes.examPage,
+      page: () => ExamPage(),
+    ),
+    GetPage(
+      name: Routes.examTypes,
+      page: () => ExamTypesScreen(),
+    ),
+    GetPage(
+      name: Routes.financialManagement,
+      page: () => TestPage(), // Placeholder for financial management screen
+      binding: ThemeBinding(), // Replace with actual binding when available
     ),
   ];
 }

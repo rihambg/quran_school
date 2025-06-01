@@ -1,11 +1,12 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class Teacher implements Model {
-  dynamic teacherId;
-  dynamic workHours;
-  dynamic teacherContactId;
-  dynamic teacherAccountId;
-  dynamic firstName;
-  dynamic lastName;
-  dynamic profileImage;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class Teacher implements Model {
+ dynamic teacherId;
+ dynamic workHours;
+ dynamic teacherContactId;
+ dynamic teacherAccountId;
+ dynamic firstName;
+ dynamic lastName;
+ dynamic profileImage;
 
   Teacher({
     this.teacherId,

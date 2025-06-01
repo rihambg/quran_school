@@ -1,10 +1,11 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class Lecture implements Model {
-  dynamic lectureId;
-  dynamic teamAccomplishmentId;
-  dynamic lectureNameAr;
-  dynamic lectureNameEn;
-  dynamic shownOnWebsite;
-  dynamic circleType;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class Lecture implements Model {
+ dynamic lectureId;
+ dynamic teamAccomplishmentId;
+ dynamic lectureNameAr;
+ dynamic lectureNameEn;
+ dynamic shownOnWebsite;
+ dynamic circleType;
 
   Lecture({
     this.lectureId,

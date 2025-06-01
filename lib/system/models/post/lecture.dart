@@ -13,6 +13,19 @@ class Lecture extends AbstractClass {
   //lecture schedule
   Map<String, Map<String, dynamic>>? schedule;
 
+  static var fromJson = (Map<String, dynamic> json) {
+    return Lecture()
+      ..lectureNameAr = json['info']['lecture_name_ar'] ?? ''
+      ..lectureNameEn = json['info']['lecture_name_en'] ?? ''
+      ..circleType = json['info']['circle_type'] ?? ''
+      ..category = json['info']['category'] ?? ''
+      ..teachersId = List<int>.from(json['info']['teacher_ids'] ?? [])
+      ..showOnwebsite = json['info']['show_on_website'] ?? 0
+      ..schedule = json['schedule'] != null
+          ? Map<String, Map<String, dynamic>>.from(json['schedule'])
+          : null;
+  };
+
   @override
   bool get isComplete {
     return lectureNameAr.isNotEmpty &&

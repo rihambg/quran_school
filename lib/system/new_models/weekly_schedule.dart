@@ -1,7 +1,8 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class WeeklySchedule implements Model {
-  dynamic weeklyScheduleId;
-  dynamic dayOfWeek;
-  dynamic lectureId;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class WeeklySchedule implements Model {
+ dynamic weeklyScheduleId;
+ dynamic dayOfWeek;
+ dynamic lectureId;
 
   WeeklySchedule({
     this.weeklyScheduleId,

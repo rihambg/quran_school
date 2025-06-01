@@ -1,8 +1,9 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class AccountInfo implements Model {
-  dynamic accountId;
-  dynamic username;
-  dynamic passcode;
-  dynamic accountType;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class AccountInfo implements Model {
+ dynamic accountId;
+ dynamic username;
+ dynamic passcode;
+ dynamic accountType;
 
   AccountInfo({
     this.accountId,

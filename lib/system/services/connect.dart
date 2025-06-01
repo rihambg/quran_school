@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 import 'package:http/http.dart' as http;
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/models/post/abstract_class.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
 
 class ApiResult<T> {
   final String? errorMessage;
@@ -18,7 +19,7 @@ class ApiResult<T> {
   bool get isSuccess => data != null;
 }
 
-class Connect {
+class Connect<T extends Model> {
   static const Duration _timeoutDuration = Duration(seconds: 8);
   static const Duration _connectionTimeout = Duration(seconds: 5);
 
@@ -31,10 +32,6 @@ class Connect {
     final client = http.Client();
     try {
       dev.log('Fetching data from: $url');
-
-      await client
-          .get(Uri.parse(url), headers: _jsonHeaders)
-          .timeout(_connectionTimeout);
 
       final response = await client
           .get(Uri.parse(url), headers: _jsonHeaders)

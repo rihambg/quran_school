@@ -1,13 +1,16 @@
 import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/guardian.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/student.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/network/api_endpoints.dart';
 import '../timer.dart';
 import '../custom_container.dart';
 import '../input_field.dart';
 import '../../../controllers/validator.dart';
 import '../../models/post/student.dart';
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/connect.dart';
+
 import '../multiselect.dart';
 import '../../utils/const/student.dart';
 import '../../../controllers/generate.dart';
@@ -16,6 +19,28 @@ import '../../../controllers/submit_form.dart';
 import '../picker.dart';
 import '../image.dart';
 import '../../../controllers/form_controller.dart' as form;
+
+class LectureIdName implements Model {
+  final int id;
+  final String name;
+
+  LectureIdName({required this.id, required this.name});
+
+  factory LectureIdName.fromJson(Map<String, dynamic> json) {
+    return LectureIdName(
+      id: json['id'] as int,
+      name: json['name'] as String,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+    };
+  }
+}
 
 class StudentDialog extends StatefulWidget {
   const StudentDialog({super.key});
@@ -27,9 +52,10 @@ class StudentDialog extends StatefulWidget {
 class _StudentDialogState extends State<StudentDialog> {
   Future<void> loadData() async {
     try {
-      final fetchedSessionNames = await getItems(ApiEndpoints.getLectureIdName);
-      final fetchedGuardianAccounts =
-          await getItems(ApiEndpoints.getGuardianAccounts);
+      final fetchedSessionNames = await getItems<LectureIdName>(
+          ApiEndpoints.getLectureIdName, LectureIdName.fromJson);
+      final fetchedGuardianAccounts = await getItems<Guardian>(
+          ApiEndpoints.getGuardianAccounts, Guardian.fromJson);
 
       dev.log('sessionNames: ${fetchedSessionNames.toString()}');
       dev.log('guardianAccounts: ${fetchedGuardianAccounts.toString()}');
@@ -47,7 +73,6 @@ class _StudentDialogState extends State<StudentDialog> {
 
   late Generate generate;
   late form.FormController formController;
-  final Connect connect = Connect();
   final StudentInfoDialog studentInfo = StudentInfoDialog();
 
   bool isClicked = false;
@@ -679,12 +704,11 @@ class _StudentDialogState extends State<StudentDialog> {
                   child: ElevatedButton(
                     onPressed: () async {
                       isComplete.value = false;
-                      final success = await submitForm(
-                        studentFormKey,
-                        connect,
-                        studentInfo,
-                        ApiEndpoints.getStudents,
-                      );
+                      final success = await submitForm<Student>(
+                          studentFormKey,
+                          studentInfo,
+                          ApiEndpoints.getStudents,
+                          Student.fromJson);
                       if (success) {
                         Get.back(); // Close the dialog
                       }

@@ -1,8 +1,10 @@
 import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:multiple_search_selection/multiple_search_selection.dart';
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/connect.dart';
+
 import 'package:get/get.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/api_client.dart';
 
 class MultiSelectResult {
   List<MultiSelectItem>? items;
@@ -25,21 +27,21 @@ class MultiSelectItem {
   }
 }
 
-Future<MultiSelectResult> getItems(String url) async {
-  Connect connect = Connect();
-  ApiResult<List<Map<String, dynamic>>> data;
+Future<MultiSelectResult> getItems<T extends Model>(
+    String url, T Function(Map<String, dynamic>) fromJson) async {
+  List<T> data;
 
   List<Map<String, dynamic>> items;
   List<MultiSelectItem> multiSelectItems;
-  data = await connect.get(url);
-  if (data.isSuccess) {
-    items = data.data!;
+  data = await ApiService.fetchList<T>(url, fromJson);
+  if (data.isNotEmpty) {
+    items = data.map((item) => item.toJson()).toList();
 
     multiSelectItems =
         items.map((item) => MultiSelectItem.fromJson(item)).toList();
     return MultiSelectResult.onSuccess(items: multiSelectItems);
   } else {
-    return MultiSelectResult.onError(errorMessage: data.errorMessage);
+    return MultiSelectResult.onError(errorMessage: 'Failed to fetch items');
   }
 }
 

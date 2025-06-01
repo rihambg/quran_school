@@ -1,11 +1,12 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';class Exam implements Model {
-  dynamic examId;
-  dynamic examLevelId;
-  dynamic examNameAr;
-  dynamic examNameEn;
-  dynamic examType;
-  dynamic examSucessMinPoint;
-  dynamic examMaxPoint;
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
+class Exam implements Model {
+ dynamic examId;
+ dynamic examLevelId;
+ dynamic examNameAr;
+ dynamic examNameEn;
+ dynamic examType;
+ dynamic examSucessMinPoint;
+ dynamic examMaxPoint;
 
   Exam({
     this.examId,

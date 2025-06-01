@@ -17,6 +17,8 @@ class Guardian extends AbstractClass {
   late String passcode;
   //account image
   String? imagePath;
+
+  Guardian();
   @override
   bool get isComplete {
     return firstName.isNotEmpty &&
@@ -47,5 +49,21 @@ class Guardian extends AbstractClass {
         "phone_number": phoneNumber,
       }
     };
+  }
+
+  Guardian.fromMap(Map<String, dynamic> map) {
+    firstName = map['info']['first_name'] ?? '';
+    lastName = map['info']['last_name'] ?? '';
+    relationship = map['info']['relationship'] ?? '';
+    dateOfBirth = map['info']['date_of_birth'];
+    address = map['info']['home_address'];
+    job = map['info']['job'];
+
+    email = map['contact_info']['email'] ?? '';
+    phoneNumber = map['contact_info']['phone_number'] ?? '';
+
+    username = map['account_info']['username'] ?? '';
+    passcode = map['account_info']['passcode'] ?? '';
+    imagePath = map['account_info']['profile_image'];
   }
 }

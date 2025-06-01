@@ -5,7 +5,7 @@ import '../../../controllers/submit_form.dart';
 import '../../models/post/guardian.dart';
 import '../../utils/const/guardian.dart';
 import '../../../controllers/generate.dart';
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/connect.dart';
+
 import '../../../controllers/validator.dart';
 import '../custom_container.dart';
 import '../input_field.dart';
@@ -25,7 +25,6 @@ class _GuardianDialogState extends State<GuardianDialog> {
   late ScrollController scrollController;
   late Generate generate;
   late form.FormController formController;
-  final Connect connect = Connect();
   final guardianInfo = Guardian();
   @override
   void initState() {
@@ -309,9 +308,9 @@ class _GuardianDialogState extends State<GuardianDialog> {
                       isComplete.value = false;
                       final success = await submitForm(
                         guardianFormKey,
-                        connect,
                         guardianInfo,
                         ApiEndpoints.getGuardians,
+                        (Guardian.fromMap),
                       );
                       if (success) {
                         Get.back(); // Close the dialog
