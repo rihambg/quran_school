@@ -113,6 +113,10 @@ class ApiEndpoints {
   static String getGuardianAccounts = '$baseUrl/guardians';
 
   static String getLectureIdName = '$baseUrl/lectures/ar_name-and-id';
+
+  static String getStudentAchievements = '$baseUrl/achievements';
+
+  static String getSpecialAchievements = '$baseUrl/special/achievements';
   static String getWeeklyScheduleById(int id) => '$baseUrl/weeklyschedules/$id';
 
   static String getStudentsByLecture(int idLecture) =>
