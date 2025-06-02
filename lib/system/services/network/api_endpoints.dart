@@ -44,7 +44,7 @@ class ApiEndpoints {
   static String getGoldenRecordById(int id) => '$baseUrl/goldenrecords/$id';
 
   // Guardian endpoints
-  static final String getGuardians = '$baseUrl/guardians';
+  static final String getGuardians = '$baseUrl/special/guardians';
   static String getGuardianById(int id) => '$baseUrl/guardians/$id';
 
   // LectureContent endpoints
@@ -119,6 +119,8 @@ class ApiEndpoints {
   static String getSpecialAchievements = '$baseUrl/special/achievements';
 
   static String submitStudentForm = '$baseUrl/special/students/submit';
+
+  static String submitGuardianForm = '$baseUrl/special/guardians/submit';
   static String getWeeklyScheduleById(int id) => '$baseUrl/weeklyschedules/$id';
 
   static String getStudentsByLecture(int idLecture) =>

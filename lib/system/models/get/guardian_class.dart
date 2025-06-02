@@ -15,7 +15,7 @@ class Guardian implements Model {
   Map<String, dynamic> toJson() {
     return {
       'guardian_id': id,
-      'last_name': lastName,
+      'lastName': lastName,
       'first_name': firstName,
       'date_of_birth': dateOfBirth,
       'relationship': relationship,
@@ -49,14 +49,14 @@ class Guardian implements Model {
     }
 
     return Guardian(
-      id: map['guardian_id'].toString(),
-      lastName: map['last_name'] ?? '',
-      firstName: map['first_name'] ?? '',
-      dateOfBirth: map['date_of_birth'] ?? '',
+      id: map['id'].toString(),
+      lastName: map['lastName'] ?? '',
+      firstName: map['firstName'] ?? '',
+      dateOfBirth: map['dateOfBirth'] ?? '',
       relationship: map['relationship'] ?? '',
       phoneNumber: map['phone_number'] ?? '',
       email: map['email'] ?? '',
-      guardianAccount: map['guardian_account'],
+      guardianAccount: map['guardianAccount'],
       children: parsedChildren,
     );
   }
