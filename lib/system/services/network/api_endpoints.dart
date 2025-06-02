@@ -117,6 +117,8 @@ class ApiEndpoints {
   static String getStudentAchievements = '$baseUrl/achievements';
 
   static String getSpecialAchievements = '$baseUrl/special/achievements';
+
+  static String submitStudentForm = '$baseUrl/special/students/submit';
   static String getWeeklyScheduleById(int id) => '$baseUrl/weeklyschedules/$id';
 
   static String getStudentsByLecture(int idLecture) =>

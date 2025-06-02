@@ -20,7 +20,7 @@ Future<bool> submitForm<T>(
   }
 
   try {
-    await ApiService.post<T>(url, obj as Map<String, dynamic>, fromJson);
+    await ApiService.post<T>(url, obj.toMap(), fromJson);
     Get.snackbar('Success', 'Form submitted successfully');
     return true;
   } catch (e) {

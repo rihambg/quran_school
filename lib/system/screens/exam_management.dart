@@ -29,47 +29,72 @@ class _ExamPageState extends State<ExamPage> {
     final scaffoldBackgroundColor = theme.scaffoldBackgroundColor;
 
     return Scaffold(
-      backgroundColor: scaffoldBackgroundColor,
-      body: SystemUI(
-        title: "Exam Management",
-        child: Card(
-          child: GridView(
+        backgroundColor: scaffoldBackgroundColor,
+        body: SystemUI(
+            title: "Exam Management",
+            child: NavigationMenuCard(children: [
+              ExamButton(
+                title: "سجل الاختبارات",
+                icon: Icons.list,
+                onPressed: () {
+                  Get.toNamed('/exams/records');
+                },
+              ),
+              ExamButton(
+                title: "تقديرات الاختبارات",
+                icon: Icons.list,
+                onPressed: () {
+                  Get.toNamed('/exams/notes');
+                },
+              ),
+              ExamButton(
+                title: "ادارة لجنة الاختبارات",
+                icon: Icons.list,
+                onPressed: () {
+                  Get.toNamed('/exams/teachers');
+                },
+              ),
+              ExamButton(
+                title: "انواع الاختبارات",
+                icon: Icons.list,
+                onPressed: () {
+                  Get.toNamed('/exams/types');
+                },
+              ),
+            ])));
+  }
+}
+
+class NavigationMenuCard extends StatelessWidget {
+  final List<Widget> children;
+
+  const NavigationMenuCard({super.key, required this.children});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Card(
+          margin: const EdgeInsets.all(20.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          child: Padding(
             padding: const EdgeInsets.all(40.0),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 40.0,
-              crossAxisSpacing: 40.0,
-              childAspectRatio: 6,
+            child: GridView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 40.0,
+                crossAxisSpacing: 40.0,
+                childAspectRatio: 6,
+              ),
+              children: children,
             ),
-            children: [
-              ExamButton(
-                  title: "سجل الاختبارات",
-                  icon: Icons.list,
-                  onPressed: () {
-                    Get.toNamed('/exams/records');
-                  }),
-              ExamButton(
-                  title: "تقديرات الاختبارات",
-                  icon: Icons.list,
-                  onPressed: () {
-                    Get.toNamed('/exams/notes');
-                  }),
-              ExamButton(
-                  title: "ادارة لجنة الاختبارات",
-                  icon: Icons.list,
-                  onPressed: () {
-                    Get.toNamed('/exams/teachers');
-                  }),
-              ExamButton(
-                  title: "انواع الاختبارات",
-                  icon: Icons.list,
-                  onPressed: () {
-                    Get.toNamed('/exams/types');
-                  }),
-            ],
           ),
         ),
-      ),
+      ],
     );
   }
 }

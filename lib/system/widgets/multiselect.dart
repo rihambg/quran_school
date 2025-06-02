@@ -6,39 +6,46 @@ import 'package:get/get.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/api_client.dart';
 
-class MultiSelectResult {
-  List<MultiSelectItem>? items;
+class MultiSelectResult<T extends Model> {
+  List<MultiSelectItem<T>>? items;
   String? errorMessage;
   MultiSelectResult.onSuccess({required this.items}) : errorMessage = null;
   MultiSelectResult.onError({required this.errorMessage}) : items = null;
 }
 
-class MultiSelectItem {
+class MultiSelectItem<T> {
   final int id;
   final String name;
+  final T obj;
 
-  MultiSelectItem({required this.id, required this.name});
+  MultiSelectItem({required this.id, required this.obj, required this.name});
 
   factory MultiSelectItem.fromJson(Map<String, dynamic> json) {
     return MultiSelectItem(
       id: json['id'] as int,
+      obj: json['obj'] as T,
       name: json['name'] as String,
     );
   }
 }
 
-Future<MultiSelectResult> getItems<T extends Model>(
+Future<MultiSelectResult<T>> getItems<T extends Model>(
     String url, T Function(Map<String, dynamic>) fromJson) async {
   List<T> data;
 
   List<Map<String, dynamic>> items;
-  List<MultiSelectItem> multiSelectItems;
+  List<MultiSelectItem<T>> multiSelectItems;
   data = await ApiService.fetchList<T>(url, fromJson);
   if (data.isNotEmpty) {
-    items = data.map((item) => item.toJson()).toList();
+    items = data
+        .map((item) => {"obj": item, "id": 0, "name": item.toString()})
+        .toList();
+    items.asMap().forEach((index, item) {
+      item['id'] = index + 1; // Assigning a unique ID starting from 1
+    });
 
     multiSelectItems =
-        items.map((item) => MultiSelectItem.fromJson(item)).toList();
+        items.map((item) => MultiSelectItem<T>.fromJson(item)).toList();
     return MultiSelectResult.onSuccess(items: multiSelectItems);
   } else {
     return MultiSelectResult.onError(errorMessage: 'Failed to fetch items');
@@ -67,12 +74,12 @@ class MultiSelectController extends GetxController {
   }
 }
 
-class MultiSelect extends StatefulWidget {
-  final List<MultiSelectItem> preparedData;
-  final Function(List<MultiSelectItem>) getPickedItems;
+class MultiSelect<T> extends StatefulWidget {
+  final List<MultiSelectItem<T>> preparedData;
+  final Function(List<MultiSelectItem<T>>) getPickedItems;
   final String hintText;
   final int? maxSelectedItems;
-  final List<MultiSelectItem>? initialPickedItems;
+  final List<MultiSelectItem<T>>? initialPickedItems;
 
   const MultiSelect({
     super.key,
