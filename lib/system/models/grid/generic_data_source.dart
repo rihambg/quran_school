@@ -1,4 +1,3 @@
-import 'dart:developer' as dev;
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:flutter/material.dart';
@@ -81,10 +80,8 @@ class GenericDataSource<T> extends DataGridSource {
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: GestureDetector(
-        child: isSelected
-            ? Icon(deleteIcon, color: Colors.red)
-            : Icon(infoIcon, color: Colors.blue),
-        onTap: () => isSelected ? _showDeleteDialog(row) : _showRowDetails(row),
+        child: Icon(infoIcon, color: Colors.blue),
+        onTap: () => _showRowDetails(row),
       ),
     );
   }
@@ -100,36 +97,6 @@ class GenericDataSource<T> extends DataGridSource {
             style: const TextStyle(fontSize: 12),
           ),
         );
-  }
-
-  void _showDeleteDialog(DataGridRow row) async {
-    final result = await Get.dialog(
-      AlertDialog(
-        title: const Text('Confirm Delete'),
-        content: const Text('Are you sure you want to delete this item?'),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(result: false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Get.back(result: true),
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-
-    if (result == true) {
-      try {
-        final id = idExtractor(row);
-        await onDelete?.call(id);
-        await onRefresh();
-      } catch (e) {
-        dev.log("Delete error: $e");
-        Get.snackbar('Error', 'Failed to delete item');
-      }
-    }
   }
 
   void _showRowDetails(DataGridRow row) {

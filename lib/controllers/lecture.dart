@@ -1,20 +1,19 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/models/post/lecture.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/api_client.dart';
 import '/system/services/network/api_endpoints.dart';
 
-import '/system/models/get/lecture_class.dart';
-
 class LectureController extends GetxController {
   RxBool isLoading = false.obs;
-  RxList<Lecture> lectureList = <Lecture>[].obs;
+  RxList<LectureForm> lectureList = <LectureForm>[].obs;
   RxString errorMessage = ''.obs;
 
   Future<void> getData(String fetchUrl, {VoidCallback? onFinished}) async {
     try {
       errorMessage.value = '';
-      final result = await ApiService.fetchList<Lecture>(
-          fetchUrl, (json) => Lecture.fromJson(json));
+      final result = await ApiService.fetchList<LectureForm>(
+          fetchUrl, (json) => LectureForm.fromJson(json));
 
       if (result.isNotEmpty) {
         lectureList.value = result;

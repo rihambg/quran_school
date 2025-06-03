@@ -52,7 +52,7 @@ class ApiEndpoints {
   static String getLectureContentById(int id) => '$baseUrl/lecturecontents/$id';
 
   // Lecture endpoints
-  static final String getLectures = '$baseUrl/lectures';
+  static final String getLectures = '$baseUrl/special/lectures';
   static String getLectureById(int id) => '$baseUrl/lectures/$id';
 
   // LectureStudent endpoints
@@ -119,8 +119,11 @@ class ApiEndpoints {
   static String getSpecialAchievements = '$baseUrl/special/achievements';
 
   static String submitStudentForm = '$baseUrl/special/students/submit';
+  static String submitLectureForm = '$baseUrl/special/lectures/submit';
+  static String getSpecialLecture(int id) => '$baseUrl/special/lectures/$id';
 
   static String submitGuardianForm = '$baseUrl/special/guardians/submit';
+
   static String getWeeklyScheduleById(int id) => '$baseUrl/weeklyschedules/$id';
 
   static String getStudentsByLecture(int idLecture) =>

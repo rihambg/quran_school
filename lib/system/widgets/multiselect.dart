@@ -52,10 +52,10 @@ Future<MultiSelectResult<T>> getItems<T extends Model>(
   }
 }
 
-class MultiSelectController extends GetxController {
-  var pickedItems = <MultiSelectItem>[].obs;
+class MultiSelectController<T> extends GetxController {
+  var pickedItems = <MultiSelectItem<T>>[].obs;
 
-  void addItem(MultiSelectItem item) {
+  void addItem(MultiSelectItem<T> item) {
     if (!pickedItems.any((e) => e.id == item.id)) {
       pickedItems.add(item);
     }
@@ -69,7 +69,7 @@ class MultiSelectController extends GetxController {
     pickedItems.clear();
   }
 
-  void setAllItems(List<MultiSelectItem> all) {
+  void setAllItems(List<MultiSelectItem<T>> all) {
     pickedItems.assignAll(all);
   }
 }
@@ -91,13 +91,13 @@ class MultiSelect<T> extends StatefulWidget {
   });
 
   @override
-  State<MultiSelect> createState() => _MultiSelectState();
+  State<MultiSelect<T>> createState() => _MultiSelectState<T>();
 }
 
-class _MultiSelectState extends State<MultiSelect> {
+class _MultiSelectState<T> extends State<MultiSelect<T>> {
   late final MultipleSearchController _multipleSearchController;
-  final MultiSelectController multiSelectController =
-      Get.put(MultiSelectController());
+  final MultiSelectController<T> multiSelectController =
+      Get.put(MultiSelectController<T>());
 
   @override
   void initState() {
@@ -119,17 +119,11 @@ class _MultiSelectState extends State<MultiSelect> {
 
     return Column(
       children: [
-        MultipleSearchSelection<MultiSelectItem>.overlay(
+        MultipleSearchSelection<MultiSelectItem<T>>.overlay(
           controller: _multipleSearchController,
           maxSelectedItems: widget.maxSelectedItems,
           clearSearchFieldOnSelect: true,
-          initialPickedItems: widget.initialPickedItems != null
-              ? widget.preparedData
-                  .where((item) => widget.initialPickedItems!
-                      .map((e) => e.id)
-                      .contains(item.id))
-                  .toList()
-              : [],
+          initialPickedItems: widget.initialPickedItems ?? [],
           searchField: TextField(
             decoration: InputDecoration(
               hintText: widget.hintText,
@@ -145,12 +139,16 @@ class _MultiSelectState extends State<MultiSelect> {
           // 🔥 GetX integration here
           onItemAdded: (item) {
             multiSelectController.addItem(item);
-            widget.getPickedItems(multiSelectController.pickedItems);
+            widget.getPickedItems(multiSelectController.pickedItems
+                .toList()
+                .cast<MultiSelectItem<T>>());
             dev.log('Added: ${item.name}');
           },
           onItemRemoved: (item) {
             multiSelectController.removeItem(item);
-            widget.getPickedItems(multiSelectController.pickedItems);
+            widget.getPickedItems(multiSelectController.pickedItems
+                .toList()
+                .cast<MultiSelectItem<T>>());
             dev.log('Removed: ${item.name}');
           },
           onTapClearAll: () {

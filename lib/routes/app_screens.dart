@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/bindings/exam.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/screens/exam_management.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/screens/exams/exam_types.dart';
 import '../system/screens/copy.dart';
@@ -89,7 +90,8 @@ class AppScreens {
     ),
     GetPage(
       name: Routes.examTypes,
-      page: () => ExamTypesScreen(),
+      page: () => ExamTypes(),
+      binding: ExamBinding(),
     ),
     GetPage(
       name: Routes.financialManagement,

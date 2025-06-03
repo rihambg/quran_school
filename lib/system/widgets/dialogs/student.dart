@@ -5,7 +5,7 @@ import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/guardian
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/lecture.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/services/network/api_endpoints.dart';
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/widgets/dialogs/guardian.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/widgets/dialogs/guardian_from_student.dart';
 import '../timer.dart';
 import '../custom_container.dart';
 import '../input_field.dart';
@@ -541,7 +541,11 @@ class _StudentDialogState extends State<StudentDialog> {
                                     child: Obx(
                                       () => OutlinedButton(
                                         onPressed: () async {
-                                          Get.dialog(GuardianDialog());
+                                          Get.put(form.FormController(5),
+                                              tag: "guardian");
+
+                                          Get.put(Generate());
+                                          Get.dialog(GuardianDialogLite());
                                         },
                                         child: Text(enrollmentDate.value ??
                                             "Add Guardian"),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/widgets/grid_card_button_menu.dart';
 import 'system_ui.dart';
 
 class ExamPage extends StatefulWidget {
@@ -32,29 +33,29 @@ class _ExamPageState extends State<ExamPage> {
         backgroundColor: scaffoldBackgroundColor,
         body: SystemUI(
             title: "Exam Management",
-            child: NavigationMenuCard(children: [
-              ExamButton(
+            child: GridCardButtonMenu(children: [
+              GridCardButton(
                 title: "سجل الاختبارات",
                 icon: Icons.list,
                 onPressed: () {
                   Get.toNamed('/exams/records');
                 },
               ),
-              ExamButton(
+              GridCardButton(
                 title: "تقديرات الاختبارات",
                 icon: Icons.list,
                 onPressed: () {
                   Get.toNamed('/exams/notes');
                 },
               ),
-              ExamButton(
+              GridCardButton(
                 title: "ادارة لجنة الاختبارات",
                 icon: Icons.list,
                 onPressed: () {
                   Get.toNamed('/exams/teachers');
                 },
               ),
-              ExamButton(
+              GridCardButton(
                 title: "انواع الاختبارات",
                 icon: Icons.list,
                 onPressed: () {
@@ -62,75 +63,5 @@ class _ExamPageState extends State<ExamPage> {
                 },
               ),
             ])));
-  }
-}
-
-class NavigationMenuCard extends StatelessWidget {
-  final List<Widget> children;
-
-  const NavigationMenuCard({super.key, required this.children});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          margin: const EdgeInsets.all(20.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: GridView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 40.0,
-                crossAxisSpacing: 40.0,
-                childAspectRatio: 6,
-              ),
-              children: children,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ExamButton extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  const ExamButton({
-    super.key,
-    required this.title,
-    required this.icon,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xff169b88),
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.all(40.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(title, style: const TextStyle(fontSize: 20)),
-          const SizedBox(width: 16),
-          Icon(icon, size: 40),
-        ],
-      ),
-    );
   }
 }

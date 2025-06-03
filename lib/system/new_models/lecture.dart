@@ -3,10 +3,10 @@ import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.da
 class Lecture implements Model {
   dynamic lectureId;
   dynamic teamAccomplishmentId;
-  dynamic lectureNameAr;
-  dynamic lectureNameEn;
+  dynamic lectureNameAr = '';
+  dynamic lectureNameEn = '';
   dynamic shownOnWebsite;
-  dynamic circleType;
+  dynamic circleType = '';
 
   Lecture({
     this.lectureId,
