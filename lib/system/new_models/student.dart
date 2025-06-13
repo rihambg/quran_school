@@ -1,15 +1,10 @@
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/account_info.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
-import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/personal_info.dart';
 
 class Student implements Model {
   dynamic studentId;
   dynamic guardianId;
   dynamic studentContactId;
   dynamic studentAccountId;
-
-  AccountInfo? studentAccount;
-  PersonalInfo? studentInfo;
 
   Student({
     this.studentId,
@@ -32,4 +27,7 @@ class Student implements Model {
         'student_contact_id': studentContactId,
         'student_account_id': studentAccountId,
       };
+
+  @override
+  List<int> getPrimaryKey() => [studentId, guardianId];
 }

@@ -3,13 +3,10 @@
   "cmake.sourceDirectory": "C:/Users/admin/Desktop/quran/The-Doctrine-of-the-People-of-the-Quran/linux",
   "configurations": [
     {
-      "name": "Dart",
+      "name": "Flutter",
       "type": "dart",
       "request": "launch",
-      "program": "/home/ratoui/Desktop/N/stage_1/lib/main.dart"
+      "program": "lib/main.dart"
     }
-
-  
   ]
 }
-  

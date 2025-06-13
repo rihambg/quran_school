@@ -1,6 +1,7 @@
+import 'package:the_doctarine_of_the_ppl_of_the_quran/system/models/post/abstract_class.dart';
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
 
-class Exam implements Model {
+class Exam extends AbstractClass implements Model {
   dynamic examId;
   dynamic examLevelId;
   dynamic examNameAr;
@@ -55,4 +56,19 @@ class Exam implements Model {
         'exam_tjwid_tho_point': examTjwidThoPoint,
         'exam_performance_point': examPerformancePoint,
       };
+
+  @override
+  bool get isComplete =>
+      examNameAr != null &&
+      examNameEn != null &&
+      examType != null &&
+      examSucessMinPoint != null &&
+      examMaxPoint != null &&
+      examMemoPoint != null &&
+      examTjwidAppPoint != null &&
+      examTjwidThoPoint != null &&
+      examPerformancePoint != null;
+
+  @override
+  List<int> getPrimaryKey() => examId;
 }

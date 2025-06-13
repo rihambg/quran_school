@@ -109,6 +109,9 @@ class _MultiSelectState<T> extends State<MultiSelect<T>> {
       minCharsToShowItems: 1,
     );
 
+    Get.find<MultiSelectController<T>>()
+        .pickedItems
+        .assignAll(widget.initialPickedItems ?? []);
     dev.log('MultiSelect initialized with ${widget.preparedData.length} items');
   }
 

@@ -37,7 +37,10 @@ class SubscriptionInfo implements Model {
         'enrollment_date': enrollmentDate,
         'exit_date': exitDate,
         'exit_reason': exitReason,
-        'is_exempt_from_payment': isExemptFromPayment,
+        'is_exempt_from_payment': isExemptFromPayment ? 1 : 0,
         'exemption_percentage': exemptionPercentage,
       };
+
+  @override
+  List<int> getPrimaryKey() => [subscriptionId, studentId];
 }

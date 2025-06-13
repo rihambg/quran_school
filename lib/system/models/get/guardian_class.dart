@@ -1,13 +1,15 @@
 import 'package:the_doctarine_of_the_ppl_of_the_quran/system/new_models/model.dart';
 
 class Guardian implements Model {
-  final String id;
-  final String lastName;
-  final String firstName;
-  final String dateOfBirth;
-  final String relationship;
-  final String phoneNumber;
-  final String email;
+  dynamic id;
+  dynamic lastName;
+  dynamic firstName;
+  dynamic dateOfBirth;
+  dynamic relationship;
+  dynamic phoneNumber;
+  dynamic homeAddress;
+  dynamic email;
+  dynamic job;
   String? guardianAccount;
   List<String>? children;
 
@@ -20,20 +22,24 @@ class Guardian implements Model {
       'date_of_birth': dateOfBirth,
       'relationship': relationship,
       'phone_number': phoneNumber,
+      'home_address': homeAddress,
       'email': email,
+      'job': job,
       'guardian_account': guardianAccount,
       'children': children?.join(',') ?? '',
     };
   }
 
   Guardian({
-    required this.id,
-    required this.lastName,
-    required this.firstName,
-    required this.dateOfBirth,
-    required this.relationship,
-    required this.phoneNumber,
-    required this.email,
+    this.id,
+    this.lastName,
+    this.firstName,
+    this.dateOfBirth,
+    this.relationship,
+    this.phoneNumber,
+    this.homeAddress,
+    this.email,
+    this.job,
     this.guardianAccount,
     this.children,
   });
@@ -55,9 +61,14 @@ class Guardian implements Model {
       dateOfBirth: map['dateOfBirth'] ?? '',
       relationship: map['relationship'] ?? '',
       phoneNumber: map['phone_number'] ?? '',
+      homeAddress: map['home_address'] ?? '',
       email: map['email'] ?? '',
+      job: map['job'] ?? '',
       guardianAccount: map['guardianAccount'],
       children: parsedChildren,
     );
   }
+
+  @override
+  List<int> getPrimaryKey() => id;
 }

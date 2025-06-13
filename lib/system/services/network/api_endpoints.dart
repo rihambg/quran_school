@@ -1,5 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+//
 class ApiEndpoints {
   static final String baseUrl = dotenv.env['DB_REST_API_URL'] ??
       'http://192.168.100.50/quran/ahl_quran_backend/api/v1';
@@ -44,7 +45,10 @@ class ApiEndpoints {
   static String getGoldenRecordById(int id) => '$baseUrl/goldenrecords/$id';
 
   // Guardian endpoints
-  static final String getGuardians = '$baseUrl/special/guardians';
+  static final String getGuardians = '$baseUrl/guardians';
+  static final String getSpecialGuardians = '$baseUrl/special/guardians';
+  static String getSpecialGuardiansById(int id) =>
+      '$baseUrl/special/guardians/$id';
   static String getGuardianById(int id) => '$baseUrl/guardians/$id';
 
   // LectureContent endpoints
@@ -52,7 +56,8 @@ class ApiEndpoints {
   static String getLectureContentById(int id) => '$baseUrl/lecturecontents/$id';
 
   // Lecture endpoints
-  static final String getLectures = '$baseUrl/special/lectures';
+  static final String getLectures = '$baseUrl/lectures';
+  static final String getSpecialLectures = '$baseUrl/special/lectures';
   static String getLectureById(int id) => '$baseUrl/lectures/$id';
 
   // LectureStudent endpoints
@@ -128,4 +133,26 @@ class ApiEndpoints {
 
   static String getStudentsByLecture(int idLecture) =>
       '$baseUrl/lecturestudents/lectures/$idLecture/students';
+
+  static String getSpecialStudent(int id) => '$baseUrl/special/students/$id';
+
+  static String getGuardianByUserName(String? guardianAccountUserName) =>
+      '$baseUrl/special/students/$guardianAccountUserName';
+
+  // Special ExamRecords endpoints
+  static final String getSpecialExamRecords = '$baseUrl/special/exams-records';
+  static final String submitSpecialExamRecord =
+      '$baseUrl/special/exams-records/submit';
+  static String updateSpecialExamRecord(int id) =>
+      '$baseUrl/special/exams-records/$id';
+
+  // Special ExamsTeachers endpoints
+  static final String getSpecialExamsTeachers =
+      '$baseUrl/special/exams-teachers';
+  static final String submitSpecialExamsTeacher =
+      '$baseUrl/special/exams-teachers/submit';
+  static String updateSpecialExamsTeacher(int id) =>
+      '$baseUrl/special/exams-teachers/$id';
+
+  static String uploadImage = '$baseUrl/upload-image'; // example
 }

@@ -97,11 +97,11 @@ class _AcheivemtDialogState extends State<AcheivemtDialog> {
       _acheivement.majorRev = _majorRevList.surahAyahList;
 
       // Log form data for debugging
-      dev.log(_acheivement.toMap().toString());
+      dev.log(_acheivement.toJson().toString());
 
       // Submit form and get result
       final success =
-          await submitForm(_formKey, _acheivement, url, Acheivement.fromMap);
+          await submitForm(_formKey, _acheivement, url, Acheivement.fromJson);
 
       // Close dialog only on success
       if (success) {
@@ -130,7 +130,7 @@ class _AcheivemtDialogState extends State<AcheivemtDialog> {
           height: 50,
           child: ClipRRect(
             //"assets/back.png"
-            child: CustomImage(imagePath: "assets/back.png"),
+            child: CustomAssetImage(assetPath: "assets/back.png"),
           ),
         ),
         Row(
