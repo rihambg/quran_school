@@ -9,6 +9,8 @@ import 'routes/app_screens.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'bindings/starter.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env"); // Load .env file
@@ -35,6 +37,16 @@ class MyApp extends StatelessWidget {
           initialBinding: StarterBinding(),
           getPages: AppScreens.routes,
           home: TestPage(),
+           localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('ar'), // Arabic
+            Locale('en'), // English
+          ],
+          locale: const Locale('ar'),
         ));
   }
 }
